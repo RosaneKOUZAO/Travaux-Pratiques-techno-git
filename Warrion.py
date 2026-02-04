@@ -1,6 +1,6 @@
 import random
 class Warrior:
-    degat = random.randint(3, 5)
+    degat = random.choice([1, 2])
     chance = 5
     fuite = 3
     prix = 10
