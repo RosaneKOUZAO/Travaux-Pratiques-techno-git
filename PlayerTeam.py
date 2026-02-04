@@ -3,7 +3,7 @@ class Team:
     pass
 
 
-class EnemyTeam(Team):
+class PlayerTeam(Team):
     def __init__(
         self,
         nb_warriors: int,
