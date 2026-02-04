@@ -10,4 +10,4 @@ class Hunter:
         self.chance = self.chance
         self.fuite = self.fuite
         self.prix = self.prix
-        self.type_unite = self.type_unite
+        self.type_unite = self.type_unite 
