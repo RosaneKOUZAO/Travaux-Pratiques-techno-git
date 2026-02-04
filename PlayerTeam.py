@@ -1,8 +1,5 @@
-class Team:
-    """Classe mère."""
-    pass
 
-
+import Team
 class PlayerTeam(Team):
     def __init__(
         self,
