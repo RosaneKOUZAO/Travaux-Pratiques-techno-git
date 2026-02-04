@@ -3,21 +3,17 @@ import os
 import random
 from typing import Any, Dict, Optional
 
-from PlayerTeam import PlayerTeam
-from EnemyTeam import EnemyTeam
+import PlayerTeam
+import EnemyTeam
 
 
 class Game:
-    # attribut de classe
     history_file = "game_history.json"
 
     def __init__(self):
-        # attribut privé
         self.__game_status: Optional[Dict[str, Any]] = None
 
-    # -------------------------
-    # I/O fichier texte (JSON)
-    # -------------------------
+   
     def __read_file(self) -> Dict[str, Any]:
         if not os.path.exists(self.history_file):
             return {}
@@ -29,9 +25,6 @@ class Game:
         with open(self.history_file, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
-    # -------------------------
-    # Méthodes demandées
-    # -------------------------
     def config(self) -> None:
         """
         Configure la partie et sauvegarde dans le fichier texte.
@@ -47,15 +40,12 @@ class Game:
             "loot": 40.0,
             "game_over": False,
 
-            # Team joueur (compteurs)
             "player_team": {"warrior": 0, "hunter": 0, "wizard": 0},
 
-            # Stats de l'équipe joueur (stockées car PlayerTeam les attend)
             "player_stats": {"damage": 0, "loot": 0, "flee": 1},
 
-            # Team ennemie (None si pas en combat)
-            "enemy_team": None,  # ex: {"warrior":1,"hunter":0,"wizard":2}
-            "enemy_stats": None,  # ex: {"damage":8,"loot":10,"flee":3}
+            "enemy_team": None,  
+            "enemy_stats": None,  
         }
 
         self.__write_file(data)
@@ -190,7 +180,6 @@ class Game:
             print("Achat impossible en combat.")
             return
 
-        # Prix simples (à adapter si votre TD impose d'autres prix)
         PRICE = {"warrior": 10.0, "hunter": 8.0, "wizard": 12.0}
         loot = float(data.get("loot", 40.0))
 
@@ -204,8 +193,7 @@ class Game:
         data.setdefault("player_team", {"warrior": 0, "hunter": 0, "wizard": 0})
         data["player_team"][unit] = int(data["player_team"].get(unit, 0)) + 1
 
-        # Mise à jour des stats équipe joueur (damage, flee, loot interne d'équipe)
-        # Ici : modèle simple (à ajuster si vous avez des stats par unité)
+        
         DAMAGE_PER = {"warrior": 3, "hunter": 2, "wizard": 4}
         FLEE_PER = {"warrior": 2, "hunter": 4, "wizard": 3}
 
