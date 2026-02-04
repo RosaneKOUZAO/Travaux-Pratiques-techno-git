@@ -1,5 +1,5 @@
+from Team import Team
 
-import Team
 class PlayerTeam(Team):
     def __init__(
         self,
@@ -17,20 +17,25 @@ class PlayerTeam(Team):
         self.__loot = loot
         self.__flee = flee
 
-    # ---- Méthodes d'accès ----
+        members = (
+            ["warrior"] * nb_warriors
+            + ["hunter"] * nb_hunters
+            + ["wizard"] * nb_wizards
+        )
+        super().__init__(members)
 
+    # ---- Méthodes d'accès ----
     def get_damage(self) -> int:
         return self.__damage
 
     def get_chance(self) -> int:
-        """
-        Valeur de chance de l'équipe.
-        Ici on considère que la chance dépend du nombre total d'unités.
-        """
         return self.__nb_warriors + self.__nb_hunters + self.__nb_wizards
 
     def get_flee(self) -> int:
         return self.__flee
+
+    def get_loot(self) -> int:
+        return self.__loot
 
     def get_nb_warriors(self) -> int:
         return self.__nb_warriors
@@ -43,7 +48,7 @@ class PlayerTeam(Team):
 
     def __repr__(self):
         return (
-            "EnemyTeam("
+            "PlayerTeam("
             f"warriors={self.__nb_warriors}, "
             f"hunters={self.__nb_hunters}, "
             f"wizards={self.__nb_wizards}, "

@@ -1,9 +1,9 @@
-from abc import ABC, abstractmethod
-import TeamIterator
+from abc import ABC
+from TeamIterator import TeamIterator
 
 class Team(ABC):
     def __init__(self, members):
-        self._members = members  
+        self._members = members
 
     def __len__(self):
         return len(self._members)
